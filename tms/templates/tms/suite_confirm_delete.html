@@ -1,0 +1,4 @@
+<form action="{% url 'tms:suite_delete' pk=suite.pk %}" method="POST">
+       {% csrf_token %}
+       <button class="btn">Delete</button>
+</form>
