@@ -5,10 +5,21 @@ from django.urls import reverse
 from django.utils import timezone
 
 
-# Create your models here.
+class Project(models.Model):
+    name = models.CharField(max_length=300)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('tms:project', kwargs={'pk': self.pk})
+
+
 class Suite(models.Model):
     name = models.CharField(max_length=300)
     description = models.TextField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
