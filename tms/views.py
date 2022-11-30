@@ -1,5 +1,38 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Suite, Case
+from .models import Project, Suite, Case
+
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'tms/project/project_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectDetailView, self).get_context_data(**kwargs)
+        context['project_suites'] = Suite.objects.filter(project=self.kwargs.get('pk'))
+        return context
+
+
+class ProjectListView(ListView):
+    model = Project
+    template_name = 'tms/project/project_list.html'
+    context_object_name = 'projects'
+
+
+class ProjectCreateView(CreateView):
+    model = Project
+    fields = ['name', 'description']
+    template_name_suffix = "/project_form"
+
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    fields = ['name', 'description']
+    template_name_suffix = "/project_form"
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    success_url = '/'
 
 
 class SuiteDetailView(DetailView):
@@ -10,12 +43,6 @@ class SuiteDetailView(DetailView):
         context = super(SuiteDetailView, self).get_context_data(**kwargs)
         context['suite_cases'] = Case.objects.filter(suite=self.kwargs.get('pk'))
         return context
-
-
-class SuiteListView(ListView):
-    model = Suite
-    template_name = 'tms/index.html'
-    context_object_name = 'suites'
 
 
 class SuiteCreateView(CreateView):

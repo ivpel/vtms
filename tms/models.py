@@ -13,7 +13,7 @@ class Project(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('tms:project', kwargs={'pk': self.pk})
+        return reverse('tms:project_detail', kwargs={'pk': self.pk})
 
 
 class Suite(models.Model):

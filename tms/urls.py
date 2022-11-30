@@ -2,15 +2,24 @@ from django.urls import path
 
 from . import views
 
+
+app_name = 'tms'
 urlpatterns = [
+    # Homepage
+
+    # Project
+    path('projects/', views.ProjectListView.as_view(), name='project'),
+    path('project/create', views.ProjectCreateView.as_view(), name='project_create'),
+    path('project/<int:pk>/detail', views.ProjectDetailView.as_view(), name='project_detail'),
+    path('project/<int:pk>/update', views.ProjectUpdateView.as_view(), name='project_update'),
+    path('project/<int:pk>/delete', views.ProjectDeleteView.as_view(), name='project_delete'),
+
     # Suite
-    path('', views.SuiteListView.as_view(), name='index'),
-    path('suite/<int:pk>/detail', views.SuiteDetailView.as_view(), name='suite_detail'),
     path('suite/create', views.SuiteCreateView.as_view(), name='suite_create'),
+    path('suite/<int:pk>/detail', views.SuiteDetailView.as_view(), name='suite_detail'),
     path('suite/<int:pk>/update', views.SuiteUpdateView.as_view(), name='suite_update'),
     path('suite/<int:pk>/delete', views.SuiteDeleteView.as_view(), name='suite_delete'),
 
     # Case
     path('case/<int:pk>/', views.CaseDetailView.as_view(), name='case_detail'),
 ]
-app_name = 'tms'
