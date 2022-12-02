@@ -21,5 +21,8 @@ urlpatterns = [
     path('suite/<int:pk>/delete', views.SuiteDeleteView.as_view(), name='suite_delete'),
 
     # Case
+    path('case/create', views.CaseCreateView.as_view(), name='case_create'),
     path('case/<int:pk>/', views.CaseDetailView.as_view(), name='case_detail'),
+    path('case/<int:pk>/update', views.CaseUpdateView.as_view(), name='case_update'),
+    path('case/<int:pk>/delete', views.CaseDeleteView.as_view(), name='case_delete'),
 ]
