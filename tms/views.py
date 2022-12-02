@@ -37,7 +37,7 @@ class ProjectDeleteView(DeleteView):
 
 class SuiteDetailView(DetailView):
     model = Suite
-    template_name = 'tms/suite_detail.html'
+    template_name = 'tms/suite/suite_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(SuiteDetailView, self).get_context_data(**kwargs)
@@ -47,19 +47,19 @@ class SuiteDetailView(DetailView):
 
 class SuiteCreateView(CreateView):
     model = Suite
-    fields = ['name', 'description']
-    template_name_suffix = "_form"
+    fields = ['name', 'description', 'project']
+    template_name_suffix = "/suite_form"
 
 
 class SuiteUpdateView(UpdateView):
     model = Suite
     fields = ['name', 'description']
-    template_name_suffix = "_form"
+    template_name_suffix = "/suite_form"
 
 
 class SuiteDeleteView(DeleteView):
     model = Suite
-    template_name = 'tms/suite_confirm_delete.html'
+    template_name = 'tms/suite/suite_confirm_delete.html'
     success_url = '/'
 
 
