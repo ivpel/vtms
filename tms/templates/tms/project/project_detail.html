@@ -1,0 +1,13 @@
+{% extends 'tms/base.html' %}
+
+{% block content %}
+    {% if project_suites %}
+    <ul class="list-group">
+        {% for suite in project_suites %}
+        <li class="list-group-item"><a href="{% url 'tms:suite_detail' suite.id %}">{{ suite.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No suites are available.</p>
+    {% endif %}
+{% endblock %}

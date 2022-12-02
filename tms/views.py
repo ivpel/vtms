@@ -65,5 +65,23 @@ class SuiteDeleteView(DeleteView):
 
 class CaseDetailView(DetailView):
     model = Case
-    template_name = 'tms/case_detail.html'
+    template_name = 'tms/case/case_detail.html'
     context_object_name = 'case'
+
+
+class CaseCreateView(CreateView):
+    model = Case
+    fields = ['suite', 'name', 'description', 'pre_requisites', 'test_steps',
+              'case_status', 'automated']
+    template_name_suffix = "/case_form"
+
+
+class CaseUpdateView(UpdateView):
+    model = Case
+    fields = ['name', 'description']
+    template_name_suffix = "/case_form"
+
+
+class CaseDeleteView(DeleteView):
+    model = Case
+    success_url = '/'

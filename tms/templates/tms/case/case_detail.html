@@ -1,4 +1,4 @@
-<a href="{% url 'tms:index'  %}">Home</a>
+
 <p>Test suite: {{ case.suite }}</p>
 <p>Name: {{ case.name }}</p>
 <p>Description: {{ case.description }}</p>
@@ -7,3 +7,7 @@
 <p>Pub date: {{ case.pub_date }}</p>
 <p>Status: {{ case.get_case_status_display }}</p>
 <p>Automated: {{ case.get_automated_display }}</p>
+<form action="{% url 'tms:case_delete' pk=case.pk %}" method="POST">
+       {% csrf_token %}
+       <button class="btn">Delete</button>
+</form>

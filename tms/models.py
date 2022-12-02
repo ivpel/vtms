@@ -34,7 +34,7 @@ class Case(models.Model):
     description = models.TextField()
     pre_requisites = models.TextField()
     test_steps = models.TextField()
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', auto_now_add=True)
 
     statuses = [
         ('p', 'Passed'),
@@ -56,6 +56,9 @@ class Case(models.Model):
         max_length=2,
         choices=automation_statuses,
     )
+
+    def get_absolute_url(self):
+        return reverse('tms:case_detail', kwargs={'pk': self.pk})
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
