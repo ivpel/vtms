@@ -1,5 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render
 from .models import Project, Suite, Case
+
+
+def homepage(request):
+    return render(request, 'homepage.html')
 
 
 class ProjectDetailView(DetailView):

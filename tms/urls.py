@@ -6,9 +6,10 @@ from . import views
 app_name = 'tms'
 urlpatterns = [
     # Homepage
+    path('', views.homepage, name='homepage'),
 
     # Project
-    path('projects/', views.ProjectListView.as_view(), name='project'),
+    path('projects/', views.ProjectListView.as_view(), name='projects'),
     path('project/create', views.ProjectCreateView.as_view(), name='project_create'),
     path('project/<int:pk>/detail', views.ProjectDetailView.as_view(), name='project_detail'),
     path('project/<int:pk>/update', views.ProjectUpdateView.as_view(), name='project_update'),
