@@ -1,10 +1,16 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render
+from django.contrib.auth import get_user
 from .models import Project, Suite, Case
 
 
 def homepage(request):
     return render(request, 'homepage.html')
+
+
+def profile(request):
+    user = get_user(request)
+    return render(request, 'registration/profile.html', {'user': user})
 
 
 class ProjectDetailView(DetailView):
