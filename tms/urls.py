@@ -1,5 +1,6 @@
 from django.urls import path
-
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
 from . import views
 
 
@@ -8,7 +9,9 @@ urlpatterns = [
     # Homepage
     path('', views.homepage, name='homepage'),
 
+    # User
     path('profile/', views.profile, name='profile'),
+    path('login/', LoginView.as_view(authentication_form=LoginForm), name="login"),
 
     # Project
     path('projects/', views.ProjectListView.as_view(), name='projects'),
