@@ -35,13 +35,13 @@
                     <li><a class="dropdown-item" href="{% url 'tms:profile' %}">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'tms:project_create' %}">New project...</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Sign out</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
                 </ul>
 
             </div>
             {% else %}
             <div class="text-end">
-                <a class="btn btn-outline-light me-2" href="{% url 'auth:login' %}">Login</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'tms:login' %}">Login</a>
             </div>
             {% endif %}
         </div>
