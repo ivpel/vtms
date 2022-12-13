@@ -2,52 +2,49 @@
 
 {% block content %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
-
-<form method="POST" action="{% url 'tms:login' %}">
-  {% csrf_token %}
-  {{form.as_p}}
-  <input type="submit" value="Login" />
-</form>
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+  please login with an account that has access.</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
 
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h2 class="text-center text-dark mt-5">Login Form</h2>
-        <div class="text-center mb-5 text-dark">Remember - Testing is fun:)</div>
-        <div class="card my-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center text-dark mt-5">Login</h2>
+      <div class="text-center mb-5 text-dark">Remember - Testing is fun:)</div>
+      <div class="card my-5">
 
-          <form class="card-body p-lg-5">
-
-            <div class="text-center">
-              <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                width="200px" alt="profile">
-            </div>
-
-            <div class="mb-3">
-              <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
-                placeholder="User Name">
-            </div>
-            <div class="mb-3">
-              <input type="password" class="form-control" id="password" placeholder="password">
-            </div>
-            <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button></div>
-          </form>
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p>Username or password didn't match. Please try again.</p>
         </div>
+        {% endif %}
 
+        <form class="card-body p-lg-5" method="POST" action="{% url 'tms:login' %}">
+          {% csrf_token %}
+          <div class="text-center">
+            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                 width="200px" alt="profile">
+          </div>
+
+          <div class="mb-3">
+            {{ form.username }}
+          </div>
+          <div class="mb-3">
+            {{ form.password }}
+          </div>
+          <div class="text-center"><button type="submit" class="btn btn-primary px-5 mb-5 mt-5 w-100">Login</button></div>
+        </form>
       </div>
+      <p><small>Lost your account credentials or don't have account yet? Ask for help your system administrator
+        or person responsible for VTMS.</small></p>
+
     </div>
   </div>
+</div>
 {% endblock %}
 

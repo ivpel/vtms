@@ -15,8 +15,8 @@ class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update(
-            {'class': 'my-username-class'}
+            {'class': 'form-control', 'id': 'Username', 'type': 'text', 'placeholder': 'User Name'}
         )
         self.fields['password'].widget.attrs.update(
-            {'class': 'my-password-class'}
+            {'class': 'form-control', 'id': 'password', 'type': 'password', 'placeholder': 'Password'}
         )
