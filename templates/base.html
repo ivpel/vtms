@@ -9,7 +9,7 @@
 </head>
 <body style="background-color: #eee;">
 <header class="p-3 text-bg-dark">
-    <div class="container-fluid">
+    <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="{% url 'tms:homepage' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 VTMS
@@ -22,7 +22,7 @@
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search..." aria-label="Search">
             </form>
 
             {% if user.is_authenticated %}
@@ -47,7 +47,7 @@
         </div>
     </div>
 </header>
-<div class="container-fluid">
+<div class="container">
     {% block content %}
     {% endblock content %}
 </div>

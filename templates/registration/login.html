@@ -2,27 +2,35 @@
 
 {% block content %}
 
-{% if next %}
-{% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-  please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %}
-{% endif %}
+
 
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h2 class="text-center text-dark mt-5">Login</h2>
-      <div class="text-center mb-5 text-dark">Remember - Testing is fun:)</div>
-      <div class="card my-5">
 
-        {% if form.errors %}
+      <h2 class="text-center text-dark mt-5">Login</h2>
+      <div class="text-center text-dark">Remember - Testing is fun:)</div>
+      {% if next %}
+        {% if user.is_authenticated %}
         <div class="alert alert-danger" role="alert">
-          <p>Username or password didn't match. Please try again.</p>
+          Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.
         </div>
+
+        {% else %}
+        <div class="alert alert-danger" role="alert">
+          Please login to see this page.
+        </div>
+        <p></p>
         {% endif %}
+      {% endif %}
+
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        <p>Username or password didn't match. Please try again.</p>
+      </div>
+      {% endif %}
+      <div class="card my-1">
 
         <form class="card-body p-lg-5" method="POST" action="{% url 'tms:login' %}">
           {% csrf_token %}
