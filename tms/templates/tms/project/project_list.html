@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
     {% if projects %}
-    <ul class="list-group">
-        {% for project in projects %}
-        <li class="list-group-item"><a href="{% url 'tms:project_detail' project.id %}">{{ project.name }}</a></li>
-        {% endfor %}
-    </ul>
+    {% for project in projects %}
+    <div class="col-sm-6">
+        <div class="card mt-3">
+            <h5 class="card-header">{{ project.name }}</h5>
+            <div class="card-body">
+                <p class="card-text">{{ project.description }}</p>
+                <a href="{% url 'tms:project_detail' project.id %}" class="btn btn-primary">Go to the project</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     {% else %}
-    <p>No suites are available.</p>
+    <p>No projects are available.</p>
     {% endif %}
+</div>
 {% endblock %}
