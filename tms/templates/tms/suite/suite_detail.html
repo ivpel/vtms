@@ -1,22 +1,31 @@
+{% extends 'base.html' %}
 
-<p>{{ suite.name }}</p>
-<p>{{ suite.description }}</p>
-<ul>
+{% block content %}
+<div class="mt-4">
+    <h2>{{ suite.name }}</h2>
+    <p>Description: {{ suite.description }}</p>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Automated</th>
+        <th scope="col">Pub date</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for case in suite_cases %}
-    <hr>
-    <div>
-        <li><a href="{% url 'tms:case_detail' case.id %}">Name: {{ case.name }}</a></li>
-        <li>Pub date: {{ case.pub_date }}</li>
-        <li>Description: {{ case.description }}</li>
-        <li>Pre: {{ case.pre_requisites }}</li>
-        <li>Steps: {{ case.test_steps }}</li>
-        <li>Status: {{ case.get_case_status_display }}</li>
-        <li>Automated: {{ case.get_automated_display }}</li>
-    </div>
+    <tr>
+        <th scope="row">{{ case.pk }}</th>
+        <td><a href="{% url 'tms:case_detail' case.id %}">{{ case.name }}</a></td>
+        <td>{{ case.get_case_status_display }}</td>
+        <td>{{ case.get_automated_display }}</td>
+        <td>{{ case.pub_date }}</td>
+    </tr>
     {% endfor %}
-    <hr>
-<form action="{% url 'tms:suite_delete' pk=suite.pk %}" method="POST">
-       {% csrf_token %}
-       <button class="btn">Delete</button>
-</form>
-</ul>
+    </tbody>
+</table>
+{% endblock %}

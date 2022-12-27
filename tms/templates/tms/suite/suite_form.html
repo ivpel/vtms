@@ -1,10 +1,20 @@
-<form method="POST" enctype="multipart/form-data">
+{% extends 'base.html' %}
 
-	<!-- Security token -->
-	{% csrf_token %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Edit suite:</h2>
 
-	<!-- Using the formset -->
-	{{ form.as_p }}
+		<form method="POST" enctype="multipart/form-data">
 
-	<input type="submit" value="Submit">
-</form>
+			<!-- Security token -->
+			{% csrf_token %}
+
+			<!-- Using the formset -->
+			{{ form.as_p }}
+
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</div>
+{% endblock %}
