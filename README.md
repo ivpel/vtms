@@ -1,4 +1,4 @@
-##VTMS
+## VTMS
 
 This **Test Management System** is my pet project which was development mostly for **educational** purpose. Even it is fully
 functional - it was not planned for production use.
