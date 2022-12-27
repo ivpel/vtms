@@ -1,13 +1,23 @@
+{% extends 'base.html' %}
 
-<p>Test suite: {{ case.suite }}</p>
-<p>Name: {{ case.name }}</p>
-<p>Description: {{ case.description }}</p>
-<p>Pre: {{ case.pre_requisites }}</p>
-<p>Steps: {{ case.test_steps }}</p>
-<p>Pub date: {{ case.pub_date }}</p>
-<p>Status: {{ case.get_case_status_display }}</p>
-<p>Automated: {{ case.get_automated_display }}</p>
-<form action="{% url 'tms:case_delete' pk=case.pk %}" method="POST">
-       {% csrf_token %}
-       <button class="btn">Delete</button>
-</form>
+{% block content %}
+<div class="row">
+       <p class="mt-4"><b>Test suite:</b> {{ case.suite }}</p>
+       <p class="text-end">
+              <span class="me-4"><b>Status:</b> {{ case.get_case_status_display }}</span>
+              <span><b>Pub date:</b> {{ case.pub_date }}</span>
+       </p>
+       <div class="col-sm-12">
+              <h2>Name: {{ case.name }}</h2>
+              <p><b>Description:</b> {{ case.description }}</p>
+              <p><b>Preconditions:</b> {{ case.pre_requisites }}</p>
+              <p><b>Steps:</b> {{ case.test_steps }}</p>
+              <p><b>Automated:</b> {{ case.get_automated_display }}</p>
+       </div>
+       <div class="text-end">
+              <a class="btn btn-secondary" href="{% url 'tms:case_update' pk=case.pk %}" role="button">Edit</a>
+              <a class="btn btn-danger" href="{% url 'tms:case_delete' pk=case.pk %}" role="button">Delete</a>
+       </div>
+</div>
+
+{% endblock %}
