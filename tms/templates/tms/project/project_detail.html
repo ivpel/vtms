@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="col-sm-12 mt-3 text-end">
+        <a class="btn btn-success" href="{% url 'tms:suite_create' %}" role="button">Create suite</a>
+    </div>
     {% if project_suites %}
-        {% for suite in project_suites %}
-        <div class="card mt-3">
-            <h5 class="card-header">Suite: {{ suite.name }}</h5>
-            <div class="card-body">
-                <p class="card-text">{{ suite.description }}</p>
-                <a href="{% url 'tms:suite_detail' suite.id %}" class="btn btn-primary">Check suite</a>
+    <div class="col-sm-12 mt-4">
+        <h2>Suites</h2>
+    </div>
+    {% for suite in project_suites %}
+    <div class="card mt-3">
+        <h5 class="card-header">Suite: {{ suite.name }}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ suite.description }}</p>
+            <a href="{% url 'tms:suite_detail' suite.id %}" class="btn btn-primary">Check suite</a>
+
+            <div class="text-end">
+                <a class="btn btn-secondary" href="{% url 'tms:suite_update' pk=suite.pk %}" role="button">Edit</a>
+                <a class="btn btn-danger" href="{% url 'tms:suite_delete' pk=suite.pk %}" role="button">Delete</a>
             </div>
         </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
     {% else %}
         <p>No suites are available.</p>
     {% endif %}
