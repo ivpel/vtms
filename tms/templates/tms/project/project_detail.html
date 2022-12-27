@@ -2,12 +2,16 @@
 
 {% block content %}
     {% if project_suites %}
-    <ul class="list-group">
         {% for suite in project_suites %}
-        <li class="list-group-item"><a href="{% url 'tms:suite_detail' suite.id %}">{{ suite.name }}</a></li>
+        <div class="card mt-3">
+            <h5 class="card-header">Suite: {{ suite.name }}</h5>
+            <div class="card-body">
+                <p class="card-text">{{ suite.description }}</p>
+                <a href="{% url 'tms:suite_detail' suite.id %}" class="btn btn-primary">Check suite</a>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
     {% else %}
-    <p>No suites are available.</p>
+        <p>No suites are available.</p>
     {% endif %}
 {% endblock %}

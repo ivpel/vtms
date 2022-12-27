@@ -2,7 +2,13 @@
 
 {% block content %}
 <div class="row">
+    <div class="col-sm-12 mt-3 text-end">
+        <a class="btn btn-success" href="{% url 'tms:project_create' %}" role="button">Add new project</a>
+    </div>
     {% if projects %}
+    <div class="col-sm-12">
+        <h2>Projects</h2>
+    </div>
     {% for project in projects %}
     <div class="col-sm-6">
         <div class="card mt-3">
@@ -10,6 +16,12 @@
             <div class="card-body">
                 <p class="card-text">{{ project.description }}</p>
                 <a href="{% url 'tms:project_detail' project.id %}" class="btn btn-primary">Go to the project</a>
+
+                <div class="text-end">
+                    <a class="btn btn-secondary" href="{% url 'tms:project_update' pk=project.pk %}" role="button">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'tms:project_delete' pk=project.pk %}" role="button">Delete</a>
+                </div>
+
             </div>
         </div>
     </div>
